@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Anagram Game</title>
     <link rel="stylesheet" href="style.css" />
 </head>
@@ -20,11 +21,11 @@
         </div>
     </div>
     <div class="timer" id="timer">Time: 60s</div>
+    <div class="guess-box" id="guessBox"></div>
+    <div class="letter-bank" id="letterBank"></div>
 
-    <div class="jumble" id="jumble">------</div>
-    <input type="text" id="guessInput" placeholder="Your guess" autocomplete="off">
     <div>
-        <button onclick="submitGuess()">Submit</button>
+        <button class="submit-btn" onclick="submitGuess()">Submit</button>
     </div>
     <div class="score" id="score">Score: 0</div>
     <button id="restartBtn" onclick="startGame()" style="display:none;">Play Again</button>

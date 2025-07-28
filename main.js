@@ -9,6 +9,8 @@ let guessedWords = new Set();
 let score = 0;
 let timeLeft = 60;
 let timerInterval = null;
+let availableLetters = [];
+let currentGuess = [];
 
 function shuffle(str) {
     return [...str].sort(() => Math.random() - 0.5).join('');
@@ -35,13 +37,72 @@ function getPoints(word) {
     return 0;
 }
 
+function renderTiles() {
+    const bank = document.getElementById("letterBank");
+    const guess = document.getElementById("guessBox");
+
+    bank.innerHTML = "";
+    guess.innerHTML = "";
+
+    const maxTiles = currentWord.length;
+
+    // Render available letter slots
+    for (let i = 0; i < maxTiles; i++) {
+        const slot = document.createElement("div");
+        slot.className = "tile-slot";
+
+        const char = availableLetters[i];
+        if (char !== null && char !== undefined) {
+            const tile = document.createElement("span");
+            tile.className = "tile";
+            tile.textContent = char.toUpperCase();
+            tile.onclick = () => {
+                currentGuess.push(char);
+                availableLetters[i] = null;
+                renderTiles();
+            };
+            slot.appendChild(tile);
+        }
+
+        bank.appendChild(slot);
+    }
+
+    // Render guess letter slots
+    for (let i = 0; i < maxTiles; i++) {
+        const slot = document.createElement("div");
+        slot.className = "tile-slot";
+
+        if (currentGuess[i]) {
+            const char = currentGuess[i];
+            const tile = document.createElement("span");
+            tile.className = "tile tile-guess";
+            tile.textContent = char.toUpperCase();
+            tile.onclick = () => {
+                const indexToReplace = availableLetters.indexOf(null);
+                if (indexToReplace !== -1) {
+                    availableLetters[indexToReplace] = char;
+                } else {
+                    availableLetters.push(char); // fallback
+                }
+                currentGuess.splice(i, 1);
+                renderTiles();
+            };
+            slot.appendChild(tile);
+        }
+
+        guess.appendChild(slot);
+    }
+}
+
+
 function submitGuess() {
-    const input = document.getElementById("guessInput");
-    const guess = input.value.toLowerCase().trim();
+    const guess = currentGuess.join("").toLowerCase();
     if (guessedWords.has(guess)) {
-        input.value = "";
+        currentGuess = [];
+        renderTiles();
         return;
     }
+
     if (isValidGuess(guess, currentWord)) {
         guessedWords.add(guess);
         const points = getPoints(guess);
@@ -52,18 +113,36 @@ function submitGuess() {
         entry.textContent = `${guess} +${points}`;
         list.appendChild(entry);
     }
-    input.value = "";
+    // Restore each letter to the first available null slot
+    for (let char of currentGuess) {
+        const indexToReplace = availableLetters.indexOf(null);
+        if (indexToReplace !== -1) {
+            availableLetters[indexToReplace] = char;
+        } else {
+            availableLetters.push(char); // fallback
+        }
+    }
+
+
+    currentGuess = [];
+    renderTiles();
 }
 
+
+
 function startGame() {
+    availableLetters = [];
     const useSeven = document.getElementById("useSeven").checked;
     const wordLength = useSeven ? 7 : 6;
     const candidates = WORD_LIST.filter(w => w.length === wordLength);
     currentWord = candidates[Math.floor(Math.random() * candidates.length)];
     scrambled = shuffle(currentWord);
     while (scrambled === currentWord) scrambled = shuffle(currentWord);
+    availableLetters = scrambled.split('');
+    currentGuess = [];
+    renderTiles();
 
-    document.getElementById("jumble").textContent = scrambled.toUpperCase();
+
     document.getElementById("score").textContent = "Score: 0";
     document.getElementById("timer").textContent = "Time: 60s";
     document.getElementById("guessList").innerHTML = "";
@@ -83,9 +162,6 @@ function startGame() {
             endGame();
         }
     }, 1000);
-
-    document.getElementById("guessInput").disabled = false;
-    document.getElementById("guessInput").focus();
 }
 
 
@@ -104,7 +180,6 @@ function getAllValidWords(base, wordList) {
 }
 
 function endGame() {
-    document.getElementById("guessInput").disabled = true;
     document.getElementById("restartBtn").style.display = "inline-block";
 
     const possibleWords = getAllValidWords(currentWord, WORD_LIST);
@@ -117,10 +192,6 @@ function endGame() {
     document.getElementById("allWords").innerHTML = `<h3>All possible words:</h3>${html}`;
 }
 
-
-document.getElementById("guessInput").addEventListener("keydown", function (e) {
-    if (e.key === "Enter") submitGuess();
-});
 document.getElementById("useSeven").addEventListener("change", startGame);
 
 startGame();

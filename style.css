@@ -1,61 +1,53 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    touch-action: manipulation;
+}
+
 body {
     font-family: sans-serif;
-    text-align: center;
-    padding: 2rem;
     background-color: #f9f9f9;
+    color: #333;
+    text-align: center;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
 }
 
-.jumble {
-    font-size: 3rem;
-    margin: 1rem 0;
-    letter-spacing: 0.3rem;
+.topbar {
+    margin-bottom: 1rem;
 }
 
-input[type="text"] {
-    font-size: 1.5rem;
-    padding: 0.5rem;
-    width: 200px;
-}
-
-button {
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    margin-top: 1rem;
-}
-
-.score {
-    margin-top: 1rem;
-    font-size: 1.2rem;
+h1 {
+    font-size: 8vw;
 }
 
 .timer {
-    font-size: 2.5rem;
+    font-size: 6vw;
     font-weight: bold;
-    margin-bottom: 1rem;
-    color: #333;
-    transition: color 0.3s;
-}
-
-.guess-list {
-    margin-top: 1rem;
+    margin: 1rem 0;
 }
 
 .toggle-wrapper {
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     gap: 0.5rem;
-    margin-bottom: 1rem;
-}
-
-.label {
-    font-weight: bold;
-    font-size: 1rem;
+    font-size: 4vw;
 }
 
 .switch {
     position: relative;
-    display: inline-block;
     width: 50px;
     height: 28px;
 }
@@ -74,20 +66,20 @@ button {
     right: 0;
     bottom: 0;
     background-color: #ccc;
-    transition: 0.4s;
     border-radius: 28px;
+    transition: 0.4s;
 }
 
 .slider:before {
-    position: absolute;
     content: "";
+    position: absolute;
     height: 20px;
     width: 20px;
     left: 4px;
     bottom: 4px;
     background-color: white;
-    transition: 0.4s;
     border-radius: 50%;
+    transition: 0.4s;
 }
 
 input:checked+.slider {
@@ -98,11 +90,108 @@ input:checked+.slider:before {
     transform: translateX(22px);
 }
 
-.topbar {
-    padding: 1rem 2rem;
-    margin-bottom: 2rem;
+.jumble {
+    font-size: 8vw;
+    letter-spacing: 0.3rem;
+    margin: 1rem 0;
+}
+
+.letter-bank,
+.guess-box {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    gap: 0.5vw;
+    width: 130%;
+    max-width: 100vw;
+    padding: 1vw;
+    margin-left: 10vw;
+    margin-right: 10vw;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.letter-bank::-webkit-scrollbar,
+.guess-box::-webkit-scrollbar {
+    display: none;
+}
+
+.tile-slot {
+    flex: 1 1 calc(100% / 8);
+    /* slightly smaller than 1/7th to account for gaps */
+    aspect-ratio: 1;
+    max-width: 13.8vw;
+    min-width: 60px;
+    min-height: 60px;
+    display: flex;
     align-items: center;
-    gap: 0.5rem;
+    justify-content: center;
+    border: 2px dashed #bbb;
+    background-color: #f8f8f8;
+    border-radius: 0.5rem;
+}
+
+.tile {
+    width: 100%;
+    height: 100%;
+    font-size: calc(100vw / 10);
+    /* fills tile */
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f0f0;
+    border-radius: 0.4rem;
+    user-select: none;
+    cursor: pointer;
+    border: none;
+    padding: 0;
+    line-height: 1;
+}
+
+.tile:hover {
+    background-color: #ddd;
+}
+
+.tile-guess {
+    background-color: #cce5ff;
+}
+
+button {
+    font-size: 5vw;
+    padding: 0.5rem 1rem;
+    margin: 1rem auto;
+}
+
+#score {
+    font-size: 5vw;
+    margin: 1rem 0;
+}
+
+#guessList,
+#allWords {
+    margin-top: 1rem;
+    font-size: 4vw;
+}
+
+@media (min-width: 768px) {
+    .tile {
+        font-size: 3rem;
+    }
+
+    .tile-slot {
+        width: 3rem;
+        height: 3rem;
+    }
+
+    .jumble {
+        font-size: 3rem;
+    }
+
+    #score {
+        font-size: 1.5rem;
+    }
+
+    button {
+        font-size: 1.2rem;
+    }
 }
