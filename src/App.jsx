@@ -120,20 +120,14 @@ export default function AnagramGame() {
         moveLetterToAvailable(letter);
       } else if (/^[a-zA-Z]$/.test(e.key)) {
         const key = e.key.toLowerCase();
-        // Find the letter in currentGuess first (to remove it)
-        const guessIndex = currentGuess.findIndex((l) => l && l.char === key);
-        if (guessIndex !== -1) {
-          // Remove from guess and return to available
-          const letter = currentGuess[guessIndex];
-          moveLetterToAvailable(letter);
-          return;
-        }
 
         // If not in guess, try to add from available letters
         const letter = availableLetters.find((l) => l.char === key);
         if (letter) {
           moveLetterToGuess(letter);
+          return;
         }
+
       }
     };
 
