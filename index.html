@@ -1,38 +1,15 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Anagram Game</title>
-    <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-    <div class="topbar">
-        <h1>Anagram Game</h1>
-        <div class="toggle-wrapper">
-            <span class="label">6 letters</span>
-            <label class="switch">
-                <input type="checkbox" id="useSeven">
-                <span class="slider round"></span>
-            </label>
-            <span class="label">7 letters</span>
-        </div>
-    </div>
-    <div class="timer" id="timer">Time: 60s</div>
-    <div class="guess-box" id="guessBox"></div>
-    <div class="letter-bank" id="letterBank"></div>
-
-    <div>
-        <button class="submit-btn" onclick="submitGuess()">Submit</button>
-    </div>
-    <div class="score" id="score">Score: 0</div>
-    <button id="restartBtn" onclick="startGame()" style="display:none;">Play Again</button>
-    <div class="guess-list" id="guessList"></div>
-    <div id="allWords" style="margin-top: 1rem;"></div>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
 </body>
-<script src="words.js"></script>
-<script src="main.js"></script>
 
 </html>

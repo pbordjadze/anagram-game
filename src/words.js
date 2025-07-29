@@ -97109,3 +97109,4 @@ const WORD_LIST = [
   "zuza",
   "zwitter"
 ];
+export default WORD_LIST;
