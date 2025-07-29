@@ -1,0 +1,153 @@
+/* coquette.css */
+/* Coquette Theme for shadcn UI + Tailwind apps */
+.coquette-theme {
+    /* Backgrounds & Surfaces */
+    --background: #fff6f8;
+    --foreground: #6a416c;
+    --card: #ffe6f4;
+    --card-foreground: #8f5d85;
+    --popover: #ffe6f4;
+    --popover-foreground: #7d517a;
+
+    /* Brand & Accent Colors */
+    --primary: #f8d4e0;
+    --primary-foreground: #6a416c;
+    --secondary: #e4c3fa;
+    --secondary-foreground: #714da6;
+    --accent: #ffd1e3;
+    --accent-foreground: #b64b6d;
+    --destructive: #fa8fb0;
+    --destructive-foreground: #7d517a;
+
+    /* Borders */
+    --border: #f8d4e0;
+    --input: #ffd1e3;
+    --ring: #e4c3fa;
+
+    /* Typography */
+    --font-family: 'Dancing Script', 'Inter', 'cursive', sans-serif;
+
+    /* Radius & Shadows */
+    --radius: 1.5rem;
+    --shadow: 0 2px 16px 2px #f8d4e066, 0 2px 8px 0 #ffd1e3aa;
+}
+
+/* Global font and background */
+body.coquette-theme,
+.coquette-theme {
+    background: var(--background) !important;
+    color: var(--foreground) !important;
+    font-family: var(--font-family) !important;
+}
+
+/* Cards, Popovers, Alerts */
+.coquette-theme .card,
+.coquette-theme .shadcn-card,
+.coquette-theme .shadcn-popover,
+.coquette-theme .shadcn-alert {
+    background: var(--card);
+    color: var(--card-foreground);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 1.5px solid var(--border);
+}
+
+/* Buttons */
+.coquette-theme .button,
+.coquette-theme .shadcn-button {
+    background: var(--primary);
+    color: var(--primary-foreground);
+    border-radius: var(--radius);
+    border: 2px solid var(--accent);
+    box-shadow: var(--shadow);
+    font-family: var(--font-family);
+    transition: all 0.15s;
+}
+
+.coquette-theme .button:hover,
+.coquette-theme .shadcn-button:hover {
+    background: var(--secondary);
+    color: var(--secondary-foreground);
+    box-shadow: 0 0 32px 6px #fae1f3cc;
+}
+
+/* Switches - improved for visibility */
+.coquette-theme .shadcn-switch,
+.coquette-theme .switch {
+    background: #fad1e4;
+    border: 2px solid #b64b6d !important;
+    box-shadow: 0 1px 6px 2px #ffd1e3b0;
+    min-width: 44px;
+    min-height: 26px;
+    transition: background 0.18s, border-color 0.18s;
+}
+
+.coquette-theme .shadcn-switch[data-state="checked"],
+.coquette-theme .switch[data-state="checked"] {
+    background: #e4c3fa;
+    border-color: #714da6 !important;
+    box-shadow: 0 0 18px 4px #e4c3fa99;
+}
+
+.coquette-theme .shadcn-switch>span,
+.coquette-theme .switch>span {
+    background: #fff0f6;
+    box-shadow: 0 1px 4px 1px #b64b6d44;
+    border: 1.5px solid #b64b6d;
+    transition: background 0.15s, border 0.15s;
+}
+
+.coquette-theme .shadcn-switch[data-state="checked"]>span,
+.coquette-theme .switch[data-state="checked"]>span {
+    background: #fa8fb0;
+    border: 1.5px solid #714da6;
+}
+
+/* 6/7 switch label contrast */
+.coquette-theme .coquette-switch-label {
+    color: #b64b6d !important;
+    font-weight: 600;
+    text-shadow: 0 1px 2px #fff;
+}
+
+/* Inputs & focus */
+.coquette-theme .shadcn-input,
+.coquette-theme .input {
+    background: var(--background);
+    color: var(--foreground);
+    border: 1.5px solid var(--accent);
+    border-radius: var(--radius);
+    box-shadow: 0 1px 6px 0 #ffd1e3aa;
+}
+
+.coquette-theme .shadcn-input:focus,
+.coquette-theme .input:focus {
+    border-color: var(--ring);
+    box-shadow: 0 0 0 2px var(--ring);
+}
+
+/* Alerts */
+.coquette-theme .shadcn-alert,
+.coquette-theme .alert {
+    background: var(--card);
+    color: var(--accent-foreground);
+    border: 1.5px solid var(--border);
+    box-shadow: var(--shadow);
+}
+
+/* Fancy scrollbars */
+.coquette-theme ::-webkit-scrollbar {
+    width: 8px;
+    background: #f8d4e0;
+}
+
+.coquette-theme ::-webkit-scrollbar-thumb {
+    background: #ffd1e3;
+    border-radius: 6px;
+}
+
+/* Cute font helper */
+.coquette-theme .font-coquette,
+.coquette-theme .coquette-font {
+    font-family: 'Dancing Script', 'Inter', 'cursive', sans-serif !important;
+}
