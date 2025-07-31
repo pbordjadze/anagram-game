@@ -1,0 +1,159 @@
+/* coquette-dark.css */
+/* Coquette Dark Theme for shadcn UI + Tailwind apps */
+.coquette-dark-theme {
+    /* Backgrounds & Surfaces */
+    --background: #201622;
+    --foreground: #f6e2ee;
+    --card: #27192b;
+    --card-foreground: #ffe2f5;
+    --popover: #27192b;
+    --popover-foreground: #f7d9f5;
+
+    /* Brand & Accent Colors */
+    --primary: #c167b7;
+    --primary-foreground: #fff6f8;
+    --secondary: #8254a1;
+    --secondary-foreground: #fff6f8;
+    --accent: #ff99cc;
+    --accent-foreground: #fff2fc;
+    --destructive: #fba8c6;
+    --destructive-foreground: #fff0f7;
+
+    /* Borders */
+    --border: #c167b7;
+    --input: #ff99cc;
+    --ring: #fba8c6;
+
+    /* Typography */
+    --font-family: 'Dancing Script', 'Inter', 'cursive', sans-serif;
+
+    /* Radius & Shadows */
+    --radius: 1.5rem;
+    --shadow: 0 2px 20px 2px #c167b733, 0 2px 12px 0 #ff99cc33;
+}
+
+/* Global font and background */
+body.coquette-dark-theme,
+.coquette-dark-theme {
+    background: var(--background) !important;
+    color: var(--foreground) !important;
+    font-family: var(--font-family) !important;
+}
+
+/* Cards, Popovers, Alerts */
+.coquette-dark-theme .card,
+.coquette-dark-theme .shadcn-card,
+.coquette-dark-theme .shadcn-popover,
+.coquette-dark-theme .shadcn-alert {
+    background: var(--card);
+    color: var(--card-foreground);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 2px solid var(--border);
+}
+
+/* Buttons */
+.coquette-dark-theme .button,
+.coquette-dark-theme .shadcn-button {
+    background: var(--primary);
+    color: var(--primary-foreground);
+    border-radius: var(--radius);
+    border: 2px solid var(--accent);
+    box-shadow: var(--shadow);
+    font-family: var(--font-family);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 600;
+    transition: all 0.17s;
+}
+
+.coquette-dark-theme .button:hover,
+.coquette-dark-theme .shadcn-button:hover {
+    background: var(--secondary);
+    color: var(--secondary-foreground);
+    box-shadow: 0 0 32px 7px #ff99cc88;
+    border-color: var(--secondary);
+}
+
+/* Switches */
+.coquette-dark-theme .shadcn-switch,
+.coquette-dark-theme .switch {
+    background: #29172d;
+    border: 2px solid #ff99cc !important;
+    box-shadow: 0 1px 8px 3px #ff99cc44;
+    min-width: 44px;
+    min-height: 26px;
+    transition: background 0.18s, border-color 0.18s;
+}
+
+.coquette-dark-theme .shadcn-switch[data-state="checked"],
+.coquette-dark-theme .switch[data-state="checked"] {
+    background: #c167b7;
+    border-color: #fff6f8 !important;
+    box-shadow: 0 0 18px 6px #c167b755;
+}
+
+.coquette-dark-theme .shadcn-switch>span,
+.coquette-dark-theme .switch>span {
+    background: #fce1f1;
+    box-shadow: 0 1px 4px 1px #c167b755;
+    border: 2px solid #c167b7;
+    transition: background 0.15s, border 0.15s;
+}
+
+.coquette-dark-theme .shadcn-switch[data-state="checked"]>span,
+.coquette-dark-theme .switch[data-state="checked"]>span {
+    background: #ff99cc;
+    border: 2px solid #fff6f8;
+}
+
+/* 6/7 switch label contrast */
+.coquette-dark-theme .coquette-switch-label {
+    color: #ff99cc !important;
+    font-weight: 600;
+    text-shadow: 0 2px 4px #2d112399;
+    letter-spacing: 1.5px;
+}
+
+/* Inputs & focus */
+.coquette-dark-theme .shadcn-input,
+.coquette-dark-theme .input {
+    background: #27192b;
+    color: var(--foreground);
+    border: 2px solid var(--accent);
+    border-radius: var(--radius);
+    box-shadow: 0 1px 8px 0 #c167b733;
+}
+
+.coquette-dark-theme .shadcn-input:focus,
+.coquette-dark-theme .input:focus {
+    border-color: var(--ring);
+    box-shadow: 0 0 0 2.5px var(--ring);
+}
+
+/* Alerts */
+.coquette-dark-theme .shadcn-alert,
+.coquette-dark-theme .alert {
+    background: var(--card);
+    color: var(--accent-foreground);
+    border: 2px solid var(--border);
+    box-shadow: var(--shadow);
+}
+
+/* Scrollbars */
+.coquette-dark-theme ::-webkit-scrollbar {
+    width: 9px;
+    background: #27192b;
+}
+
+.coquette-dark-theme ::-webkit-scrollbar-thumb {
+    background: #ff99ccbb;
+    border-radius: 7px;
+}
+
+/* Coquette font helper */
+.coquette-dark-theme .font-coquette,
+.coquette-dark-theme .coquette-font {
+    font-family: 'Dancing Script', 'Inter', 'cursive', sans-serif !important;
+    letter-spacing: 1.5px;
+}

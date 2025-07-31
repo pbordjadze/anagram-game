@@ -1,0 +1,159 @@
+/* emo.css */
+/* Emo Theme for shadcn UI + Tailwind apps */
+.emo-theme {
+    /* Backgrounds & Surfaces */
+    --background: #181924;
+    --foreground: #c8c8d3;
+    --card: #232336;
+    --card-foreground: #ececf1;
+    --popover: #232336;
+    --popover-foreground: #f7f7fb;
+
+    /* Brand & Accent Colors */
+    --primary: #482446;
+    --primary-foreground: #eaeaea;
+    --secondary: #5d295f;
+    --secondary-foreground: #fff;
+    --accent: #a94561;
+    --accent-foreground: #fff;
+    --destructive: #7d2538;
+    --destructive-foreground: #fbe0e6;
+
+    /* Borders */
+    --border: #36324a;
+    --input: #282639;
+    --ring: #a94561;
+
+    /* Typography */
+    --font-family: 'UnifrakturCook', 'IM Fell English SC', 'Germania One', 'MedievalSharp', serif, sans-serif;
+
+    /* Radius & Shadows */
+    --radius: 1.2rem;
+    --shadow: 0 2px 20px 2px #a9456120, 0 2px 12px 0 #0008;
+}
+
+/* Global font and background */
+body.emo-theme,
+.emo-theme {
+    background: var(--background) !important;
+    color: var(--foreground) !important;
+    font-family: var(--font-family) !important;
+}
+
+/* Cards, Popovers, Alerts */
+.emo-theme .card,
+.emo-theme .shadcn-card,
+.emo-theme .shadcn-popover,
+.emo-theme .shadcn-alert {
+    background: var(--card);
+    color: var(--card-foreground);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 2px solid var(--border);
+}
+
+/* Buttons */
+.emo-theme .button,
+.emo-theme .shadcn-button {
+    background: var(--primary);
+    color: var(--primary-foreground);
+    border-radius: var(--radius);
+    border: 2px solid var(--accent);
+    box-shadow: var(--shadow);
+    font-family: var(--font-family);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 600;
+    transition: all 0.17s;
+}
+
+.emo-theme .button:hover,
+.emo-theme .shadcn-button:hover {
+    background: var(--secondary);
+    color: var(--secondary-foreground);
+    box-shadow: 0 0 32px 7px #a9456188;
+    border-color: var(--secondary);
+}
+
+/* Switches */
+.emo-theme .shadcn-switch,
+.emo-theme .switch {
+    background: #232336;
+    border: 2px solid #a94561 !important;
+    box-shadow: 0 1px 8px 3px #a9456130;
+    min-width: 44px;
+    min-height: 26px;
+    transition: background 0.18s, border-color 0.18s;
+}
+
+.emo-theme .shadcn-switch[data-state="checked"],
+.emo-theme .switch[data-state="checked"] {
+    background: #482446;
+    border-color: #fff !important;
+    box-shadow: 0 0 18px 6px #a9456140;
+}
+
+.emo-theme .shadcn-switch>span,
+.emo-theme .switch>span {
+    background: #c8c8d3;
+    box-shadow: 0 1px 4px 1px #0005;
+    border: 2px solid #a94561;
+    transition: background 0.15s, border 0.15s;
+}
+
+.emo-theme .shadcn-switch[data-state="checked"]>span,
+.emo-theme .switch[data-state="checked"]>span {
+    background: #a94561;
+    border: 2px solid #fff;
+}
+
+/* 6/7 switch label contrast */
+.emo-theme .emo-switch-label {
+    color: #a94561 !important;
+    font-weight: 600;
+    text-shadow: 0 2px 4px #000c;
+    letter-spacing: 1.5px;
+}
+
+/* Inputs & focus */
+.emo-theme .shadcn-input,
+.emo-theme .input {
+    background: #232336;
+    color: var(--foreground);
+    border: 2px solid var(--accent);
+    border-radius: var(--radius);
+    box-shadow: 0 1px 8px 0 #0005;
+}
+
+.emo-theme .shadcn-input:focus,
+.emo-theme .input:focus {
+    border-color: var(--ring);
+    box-shadow: 0 0 0 2.5px var(--ring);
+}
+
+/* Alerts */
+.emo-theme .shadcn-alert,
+.emo-theme .alert {
+    background: var(--card);
+    color: var(--accent-foreground);
+    border: 2px solid var(--border);
+    box-shadow: var(--shadow);
+}
+
+/* Scrollbars */
+.emo-theme ::-webkit-scrollbar {
+    width: 9px;
+    background: #282639;
+}
+
+.emo-theme ::-webkit-scrollbar-thumb {
+    background: #a94561cc;
+    border-radius: 7px;
+}
+
+/* Emo font helper */
+.emo-theme .font-emo,
+.emo-theme .emo-font {
+    font-family: 'UnifrakturCook', 'IM Fell English SC', 'Germania One', 'MedievalSharp', serif !important;
+    letter-spacing: 2px;
+}

@@ -3,12 +3,14 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Switch } from '@/components/ui/switch';
-import { CoquetteToggle } from './CoquetteToggle';
+import { ThemeToggles } from './ThemeToggles';
 import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
 import { Card, CardContent } from '@/components/ui/card';
 import { useGameStore } from './store';
 import WORD_LIST from './words';
 import './styles/coquette.css';
+import './styles/emo.css';
+import './styles/coquette-dark.css'
 
 const shuffleString = (str) => [...str].sort(() => Math.random() - 0.5).join('');
 
@@ -86,20 +88,23 @@ export default function AnagramGame() {
     [currentGuess, availableLetters, setCurrentGuess, setAvailableLetters, setInvalidGuess]
   );
 
-  // Move letter from guess back to available
   const moveLetterToAvailable = useCallback(
     (letter) => {
-      const newGuess = [...currentGuess];
-      const idx = newGuess.findIndex((l) => l && l.id === letter.id);
-      if (idx === -1) return;
+      // Find and remove the letter from currentGuess
+      const newGuess = currentGuess.filter((l) => l?.id !== letter.id);
 
-      newGuess[idx] = null;
+      // Pad the end with nulls to maintain fixed length
+      while (newGuess.length < currentWord.length) {
+        newGuess.push(null);
+      }
+
       setCurrentGuess(newGuess);
       setAvailableLetters([...availableLetters, letter]);
       setInvalidGuess(false);
     },
-    [currentGuess, availableLetters, setCurrentGuess, setAvailableLetters, setInvalidGuess]
+    [currentGuess, availableLetters, currentWord.length, setCurrentGuess, setAvailableLetters, setInvalidGuess]
   );
+
 
   // Keyboard handler
   useEffect(() => {
@@ -179,7 +184,7 @@ export default function AnagramGame() {
       <div className="flex flex-row gap-6 items-center mt-2">
         {/* Coquette Theme Switch */}
         <div className="flex flex-row gap-2 items-center">
-          <CoquetteToggle />
+          <ThemeToggles></ThemeToggles>
         </div>
         {/* 6/7 Switch */}
         <div className="flex flex-row gap-2 items-center">
@@ -225,7 +230,7 @@ export default function AnagramGame() {
                 return (
                   <div
                     key={`guess-slot-${i}`}
-                    className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 border rounded flex items-center justify-center"
+                    className="flex-1 aspect-square border rounded flex items-center justify-center min-w-[2.5rem] max-w-[4rem]"
                   >
                     {letter ? (
                       <motion.div
@@ -253,7 +258,7 @@ export default function AnagramGame() {
                 return (
                   <div
                     key={`bank-slot-${i}`}
-                    className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 border rounded flex items-center justify-center"
+                    className="flex-1 aspect-square border rounded flex items-center justify-center min-w-[2.5rem] max-w-[4rem]"
                   >
                     {letter ? (
                       <motion.div
